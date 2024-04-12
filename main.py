@@ -126,10 +126,8 @@ def leitura_do_csv(nome_arquivo):
     rows = []
     with open(nome_arquivo, 'r') as file:
         csvreader = csv.reader(file)
-        header = next(csvreader)
         for row in csvreader:
             rows.append(row)
-    print(header)
     return rows
 """
 --------------------------------------------------------------------------------------------------------------------
@@ -144,17 +142,25 @@ def leitura_cnpjs():
 
     # Leitura do csv 
     # O arquivo precisa ter o formato correto e possuir todos os cnpjs na primeira linha
+    # há uma pequena lógica que valida o nome do arquivo e acrescenta automaticamente a extensão .csv
     nomearquivo = input(' nome  do arquivo << ')
+    if nomearquivo == "":
+        nomearquivo = 'inputexample.csv'
+    elif not nomearquivo.endswith('.csv'):
+        nomearquivo+= ".csv"
+    list_cnpj =[]
+
+    # Tenta ler o nome validado
     set_filename(nomearquivo) 
     try:
         rows = leitura_do_csv(nomearquivo)
     except:
-        print('eh, nao deu')
-        return False
-    print(f'arquivo:{rows}')        # [DEBUG] imprime todos os inputs na tela (pode ser melhorado)
-    list_cnpj =[]
+        return list_cnpj             # Retorna lista vazia, caso haja erro
+    #print(f'arquivo:{rows}')        # [DEBUG] imprime todos os inputs na tela (pode ser melhorado)
+    
 
-    # Valida os cnpjs e junta todos válidos em uma lista
+    # Valida os cnpjs e junta todos os válidos em uma lista
+    # esta lista já está no formato correto de requisição
     for row in rows:
         strcnpj = valida_cnpj(row[0])
         if strcnpj:
@@ -183,6 +189,10 @@ def main():
     
     # Inputs  --------------------------------
     cnpjs = leitura_cnpjs()
+    if len(cnpjs)==0:
+        print(f'Lista de cnpjs inexistente ou vazia')
+        return
+    
     print(f'Verificando {len(cnpjs)} cnpjs')
 
     # Sweeping  ------------------------------
