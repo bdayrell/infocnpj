@@ -3,15 +3,21 @@ Script para varredura automática de informações de empresas, dado uma lista d
 
 ## Como utilizar
 1 - Crie uma lista em formato csv com os cnpjs que você deseja analisar 
+
 2 - Siga o exemplo fornecido, que contém os cnpjs da Petrobras, Banco do brasil e Vale.
-2 - Coloque a lista na mesma pasta que o arquivo main.py
-3 - Execute o script principal com o comando:
+
+3 - Coloque a lista na mesma pasta que o arquivo main.py
+
+4 - Execute o script principal com o comando:
 >python main.py
-4 - digite o nome do arquivo que você colocou para análise 
+
+5 - digite o nome do arquivo que você colocou para análise 
 >nome arquivo = inputexample.csv
-5 - aguarde o final da execução. O nome do arquivo final será exibido na penúltima linha no formato
+
+6 - aguarde o final da execução. O nome do arquivo final será exibido na penúltima linha no formato
 >results_<nome_inicial>.csv
-6 - o resultado estará na mesma pasta de origem
+
+7 - o resultado estará na mesma pasta de origem
 
 Dados coletados:
 <span style="background-color:#5d5d5d; color:white; padding: 5px 10px; border-radius: 5px;line-height: 30px;">CNPJ</span> 
